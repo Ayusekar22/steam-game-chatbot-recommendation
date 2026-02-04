@@ -1,0 +1,161 @@
+import streamlit as st
+from src.Steam_Data import fetch_steam_reviews
+from src.Steam_Data.Preprocessing import clean_reviews
+
+
+# from Steam.steam2 import extract_appid, get_game_details
+# from Steam.reviews import fetch_steam_reviews
+# from src.chatbot import chat
+
+
+# =============================
+# PAGE CONFIG
+# =============================
+st.set_page_config(
+    page_title="Steam Game Chatbot",
+    page_icon="🎮",
+    layout="centered"
+)
+
+st.title("🎮 Steam Game Chatbot")
+st.caption("Ask anything based on Steam reviews & game facts")
+
+
+# =============================
+# INIT SESSION STATE
+# =============================
+if "chat_rooms" not in st.session_state:
+    st.session_state.chat_rooms = {
+        "Chat 1": {
+            "messages": [
+                {
+                    "role": "assistant",
+                    "content": (
+                        "👋 **Welcome!**\n\n"
+                        "Paste a Steam game link to get started 🎮"
+                    )
+                }
+            ],
+            "game": None
+        }
+    }
+
+if "current_room" not in st.session_state:
+    st.session_state.current_room = "Chat 1"
+
+
+# =============================
+# SIDEBAR – CHAT ROOMS
+# =============================
+with st.sidebar:
+    st.header("💬 Chat Rooms")
+
+    room_names = list(st.session_state.chat_rooms.keys())
+
+    selected_room = st.radio(
+        "Select chat",
+        room_names,
+        index=room_names.index(st.session_state.current_room)
+    )
+    st.session_state.current_room = selected_room
+
+    if st.button("➕ New Chat"):
+        new_room = f"Chat {len(room_names) + 1}"
+        st.session_state.chat_rooms[new_room] = {
+            "messages": [
+                {
+                    "role": "assistant",
+                    "content": "👋 Paste a Steam game link to begin 🎮"
+                }
+            ],
+            "game": None
+        }
+        st.session_state.current_room = new_room
+        st.rerun()
+
+    st.divider()
+
+    if st.button("🧹 Clear current chat"):
+        st.session_state.chat_rooms[st.session_state.current_room] = {
+            "messages": [],
+            "game": None
+        }
+        st.rerun()
+
+
+# =============================
+# ACTIVE ROOM DATA
+# =============================
+room = st.session_state.chat_rooms[st.session_state.current_room]
+messages = room["messages"]
+game = room["game"]
+
+
+# =============================
+# DISPLAY CHAT HISTORY
+# =============================
+for msg in messages:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
+
+
+# =============================
+# USER INPUT
+# =============================
+user_input = st.chat_input("Paste Steam link or ask about the game...")
+
+if user_input:
+    # save user message
+    messages.append({"role": "user", "content": user_input})
+
+    with st.chat_message("user"):
+        st.markdown(user_input)
+
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            reply = ""
+
+            # =============================
+            # CASE 1: STEAM LINK
+            # =============================
+            appid = extract_appid(user_input)
+
+            if appid:
+                game_data = get_game_details(appid)
+
+                if not game_data:
+                    reply = "❌ Failed to fetch game data."
+                else:
+                    with st.spinner("Fetching Steam reviews..."):
+                        reviews = fetch_steam_reviews(
+                            appid,
+                            max_reviews=500
+                        )
+
+                    game_data["reviews_raw"] = reviews
+                    room["game"] = game_data
+
+                    reply = f"""
+🎮 **{game_data['name']}** loaded!
+
+📄 Reviews fetched: **{len(reviews)}**
+
+You can now ask things like:
+- Is this game relaxing?
+- What do players complain about?
+- Is performance an issue?
+"""
+
+            # =============================
+            # CASE 2: NORMAL CHAT
+            # =============================
+            elif room["game"]:
+                reply = chat(user_input, room["game"])
+
+            else:
+                reply = "👋 Please paste a Steam game link first."
+
+            st.markdown(reply)
+
+    # save bot message
+    messages.append({"role": "assistant", "content": reply})
