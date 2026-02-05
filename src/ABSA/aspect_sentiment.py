@@ -1,49 +1,49 @@
-POSITIVE_WORDS = {
-    "good", "great", "fun", "excellent", "smooth",
-    "amazing", "love", "enjoy"
-}
+# POSITIVE_WORDS = {
+#     "good", "great", "fun", "excellent", "smooth",
+#     "amazing", "love", "enjoy"
+# }
 
-NEGATIVE_WORDS = {
-    "bad", "bug", "lag", "crash", "boring",
-    "slow", "problem", "issue", "terrible"
-}
-
-
-def detect_sentiment(text):
-    pos = sum(word in text for word in POSITIVE_WORDS)
-    neg = sum(word in text for word in NEGATIVE_WORDS)
-
-    if pos > neg:
-        return "positive"
-    elif neg > pos:
-        return "negative"
-    else:
-        return "neutral"
+# NEGATIVE_WORDS = {
+#     "bad", "bug", "lag", "crash", "boring",
+#     "slow", "problem", "issue", "terrible"
+# }
 
 
-def assign_aspects(reviews_clean, aspects):
-    """
-    Assign aspects & sentiment per review
-    """
+# def detect_sentiment(text):
+#     pos = sum(word in text for word in POSITIVE_WORDS)
+#     neg = sum(word in text for word in NEGATIVE_WORDS)
 
-    results = []
+#     if pos > neg:
+#         return "positive"
+#     elif neg > pos:
+#         return "negative"
+#     else:
+#         return "neutral"
 
-    for r in reviews_clean:
-        text = r["text"]
 
-        matched_aspects = [
-            a for a in aspects if a in text
-        ]
+# def assign_aspects(reviews_clean, aspects):
+#     """
+#     Assign aspects & sentiment per review
+#     """
 
-        if not matched_aspects:
-            continue
+#     results = []
 
-        sentiment = detect_sentiment(text)
+#     for r in reviews_clean:
+#         text = r["text"]
 
-        results.append({
-            "text": text,
-            "aspects": matched_aspects,
-            "sentiment": sentiment
-        })
+#         matched_aspects = [
+#             a for a in aspects if a in text
+#         ]
 
-    return results
+#         if not matched_aspects:
+#             continue
+
+#         sentiment = detect_sentiment(text)
+
+#         results.append({
+#             "text": text,
+#             "aspects": matched_aspects,
+#             "sentiment": sentiment
+#         })
+
+#     return results

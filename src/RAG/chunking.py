@@ -56,42 +56,6 @@ Description:
     }]
 
 
-
-# def build_review_chunks(reviews, max_chars=300):
-#     """
-#     Build RAG-ready chunks from cleaned Steam reviews (NO ABSA)
-#     Supports both str and dict review formats
-#     """
-
-#     chunks = []
-
-#     for r in reviews:
-#         # Case 1: review is dict
-#         if isinstance(r, dict):
-#             text = r.get("review", "")
-#         # Case 2: review is plain string
-#         else:
-#             text = str(r)
-
-#         text = text.strip()
-#         if not text:
-#             continue
-
-#         chunk_text = f"""
-# [STEAM REVIEW]
-# {text}
-# """.strip()
-
-#         if len(chunk_text) > max_chars:
-#             chunk_text = chunk_text[:max_chars]
-
-#         chunks.append({
-#             "content": chunk_text
-#         })
-
-#     return chunks
-
-
 def build_review_chunks(reviews, max_chars=300):
     """
     Build RAG-ready chunks from cleaned Steam reviews
