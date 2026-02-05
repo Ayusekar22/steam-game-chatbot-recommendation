@@ -37,10 +37,9 @@ retrieved user reviews, ensuring that insights remain grounded in actual player 
 - **Programming Language:** Python
 - **Web Interface:** Streamlit
 - **Data Collection:** Steam Reviews Scraper (Steam Web API / scraping library)
-- **Text Processing:** Regular Expressions, custom text cleaning pipeline
 - **Embedding Model:** SentenceTransformer (`text-embedding-3-small`)
 - **Vector Search:** Cosine similarity–based semantic retrieval
-- **LLM:** Large Language Model for answer generation
+- **LLM:** GPT-5-nano (used for answer generation)
 - **Frameworks & Libraries:** pandas, numpy, scikit-learn, sentence-transformers
 
 ---
