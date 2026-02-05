@@ -2,6 +2,8 @@
 
 A question-answering system that analyzes Steam game reviews using semantic retrieval and large language models.
 
+---
+
 ## Quick Overview
 
 This project builds a question-answering system based on Steam game reviews using
@@ -9,6 +11,8 @@ Retrieval-Augmented Generation (RAG), which involves:
 - Scraping recent Steam reviews and factual game data (genre, player modes, description)
 - Retrieving the most relevant review context based on semantic similarity
 - Generating answers strictly from retrieved data, not from the model’s general knowledge
+
+---
 
 ## Project Motivation & Use Case
 
@@ -25,6 +29,8 @@ This project was built to help users:
 Instead of blindly summarizing reviews, the system answers questions solely based on
 retrieved user reviews, ensuring that insights remain grounded in actual player experiences.
 
+---
+
 ## Tools
 
 - **Programming Language:** Python
@@ -35,6 +41,8 @@ retrieved user reviews, ensuring that insights remain grounded in actual player 
 - **Vector Search:** Cosine similarity–based semantic retrieval
 - **LLM:** Large Language Model for answer generation
 - **Frameworks & Libraries:** pandas, numpy, scikit-learn, sentence-transformers
+
+---
 
 ## 📂 Dataset
 
@@ -49,9 +57,13 @@ retrieved user reviews, ensuring that insights remain grounded in actual player 
 The dataset is collected dynamically using a Steam App ID, allowing the system to be
 applied to different games without retraining the model.
 
+---
+
 ## System Flow
 
 ![Project Flow](Picture/Flowchart.png)
+
+---
 
 ## Data Preprocessing
 
@@ -61,12 +73,16 @@ out overly short or non-informative reviews. This ensures that the remaining rev
 are semantically meaningful and suitable for embedding, retrieval, and grounded
 question answering.
 
+---
+
 ## Feature Engineering
 
 Instead of traditional numerical features, this project uses:
 - Text chunking (1 review ≈ 1 chunk)
 - Sentence embeddings for semantic representation
 - Lightweight metadata (review content)
+
+---
 
 ## Model Development
 
@@ -85,6 +101,8 @@ The prompt is strictly constrained so that:
 - No external or general knowledge is allowed
 - The model is not fine-tuned; performance relies on retrieval quality and prompt discipline
 
+---
+
 ## Example Questions
 
 - Is this game worth buying based on recent reviews?
@@ -92,11 +110,15 @@ The prompt is strictly constrained so that:
 - How do players feel about performance and optimization?
 - What aspects are frequently praised by long-term players?
 
+---
+
 ## Limitations
 
 - No explicit quantitative sentiment scoring is performed
 - Aggregated answers still depend on LLM interpretation
 - Reviews are inherently subjective and may contain bias
+
+---
 
 ## Conclusion
 
@@ -120,3 +142,25 @@ not just whether they are positive or negative.
 
 Overall, the system is modular, reusable, and scalable, as it can be applied to different
 games simply by changing the Steam App ID, without retraining the model.
+
+---
+
+## Chatbot Review 
+
+![Project Review](Picture/SteamGameChatbot.gif)
+
+
+## License
+
+This project is licensed under the MIT License.
+
+![License](Picture/License.svg)
+
+---
+
+## Contact
+
+If you have any questions or feedback, feel free to reach out:
+- **Email:** Ayusekar1822@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/ayusekar22/
+- **GitHub:** https://github.com/Ayusekar22
