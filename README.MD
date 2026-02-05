@@ -7,11 +7,12 @@ A question-answering system that analyzes Steam game reviews using semantic retr
 ## Quick Overview
 
 This project builds a question-answering system based on Steam game reviews using
-Retrieval-Augmented Generation (RAG), which involves:
-- Scraping recent Steam reviews and factual game data (genre, player modes, description)
-- Retrieving the most relevant review context based on semantic similarity
-- Generating answers strictly from retrieved data, not from the model’s general knowledge
+Retrieval-Augmented Generation (RAG). Users provide a Steam game link or App ID as input,
+which triggers the system to:
 
+- Scrape recent Steam reviews and factual game data (genre, player modes, description)
+- Retrieve the most relevant review context based on semantic similarity
+- Generate answers strictly from retrieved data, not from the model’s general knowledge
 ---
 
 ## Project Motivation & Use Case
@@ -109,14 +110,6 @@ The prompt is strictly constrained so that:
 - What are the most common complaints from players?
 - How do players feel about performance and optimization?
 - What aspects are frequently praised by long-term players?
-
----
-
-## Limitations
-
-- No explicit quantitative sentiment scoring is performed
-- Aggregated answers still depend on LLM interpretation
-- Reviews are inherently subjective and may contain bias
 
 ---
 
