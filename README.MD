@@ -18,7 +18,7 @@ which triggers the system to:
 ## Project Motivation & Use Case
 
 Steam games often receive thousands of user reviews, making it difficult for players
-to quickly understand whether a game is recommended or not—especially when opinions
+to quickly understand whether a game is recommended or not, especially when opinions
 are mixed and spread across long review texts.
 
 This project was built to help users:
@@ -101,16 +101,7 @@ The prompt is strictly constrained so that:
 - No external or general knowledge is allowed
 - The model is not fine-tuned; performance relies on retrieval quality and prompt discipline
 
----
-
-## Example Questions
-
-- Is this game worth buying based on recent reviews?
-- What are the most common complaints from players?
-- How do players feel about performance and optimization?
-- What aspects are frequently praised by long-term players?
-
----
+--- 
 
 ## Conclusion
 
@@ -123,11 +114,6 @@ By restricting answer generation to semantically retrieved reviews, the system i
 - Produce grounded answers that can be traced back to review sources
 - Handle open-ended, qualitative, and exploratory questions
 
-This approach is particularly suitable for Steam reviews, which are:
-- Unstructured
-- Subjective
-- Diverse in writing style and discussion topics
-
 Rather than relying on traditional quantitative sentiment scoring, the project emphasizes
 context-based interpretation, allowing users to understand *why* certain opinions emerge,
 not just whether they are positive or negative.
@@ -137,7 +123,7 @@ games simply by changing the Steam App ID, without retraining the model.
 
 ---
 
-## Chatbot Review 
+## Chatbot Preview 
 
 ![Project Review](Picture/SteamGameChatbot.gif)
 
