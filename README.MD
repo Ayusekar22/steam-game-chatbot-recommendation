@@ -15,7 +15,7 @@ which triggers the system to:
 - Generate answers strictly from retrieved data, not from the model’s general knowledge
 ---
 
-## Project Motivation & Use Case
+## Project Objectives
 
 Steam games often receive thousands of user reviews, making it difficult for players
 to quickly understand whether a game is recommended or not, especially when opinions
