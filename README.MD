@@ -4,7 +4,7 @@ A question-answering system that analyzes Steam game reviews using semantic retr
 
 ---
 
-## Quick Overview
+## 📌 Quick Overview
 
 This project builds a question-answering system based on Steam game reviews using
 Retrieval-Augmented Generation (RAG). Users provide a Steam game link or App ID as input,
