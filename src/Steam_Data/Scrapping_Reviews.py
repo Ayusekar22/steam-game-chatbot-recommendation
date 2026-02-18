@@ -46,6 +46,6 @@ def fetch_steam_reviews(
                 break
 
         cursor = data.get("cursor")
-        time.sleep(0.3)  # biar aman (rate limit friendly)
+        time.sleep(0.3) 
 
     return reviews
