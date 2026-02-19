@@ -197,10 +197,6 @@ if user_input:
                     reply = f"""
 ✅ **{game_title} — Game data loaded successfully**
 
-📄 Raw reviews   : {len(reviews_raw)}
-🧹 Clean reviews : {len(reviews_clean)}
-📦 RAG chunks    : {len(all_chunks)}
-
 You can now ask:
 - Is it relaxing?
 - Can I play with friends?
